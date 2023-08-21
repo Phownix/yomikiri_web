@@ -3,6 +3,8 @@ const Mangas = require('../scheme/manga')
 const Categories = require('../scheme/categories')
 const { v4: uuidv4 } = require('uuid');
 
+let data = process.env.ON_SERVER=="true" ? {'helper': 'no-chapters'} : {}
+
 Route.get('/', async (req, res, next) => {
     res.render("Dash/index", { 
         title: "Dashboard"
@@ -10,7 +12,7 @@ Route.get('/', async (req, res, next) => {
 })
 
 Route.get('/manga/', async (req, res, next) => {
-    let mangas = await Mangas.find().sort({$natural: 1}).select("idv4 name artist type helper url_img").exec()
+    let mangas = await Mangas.find(data).sort({$natural: 1}).select("idv4 name artist type helper url_img").exec()
     res.render("Dash/all", { 
         title: "Ver Mangas Disponibles en el Sitio",
         mangas: mangas
@@ -32,7 +34,7 @@ Route.get('/manga/add_categorie', async (req, res, next) => {
 })
 
 Route.get('/manga/:id', async (req, res, next) => {
-    let manga = await Mangas.find({'idv4': req.params.id, 'helper': 'no-chapters'}).sort({$natural: 1}).select("idv4 name artist type helper url_img").exec()
+    let manga = await Mangas.find({'idv4': req.params.id}).sort({$natural: 1}).select("idv4 name artist type helper url_img").exec()
     res.render("Dash/manga", { 
         title: "Inicio",
         manga: manga

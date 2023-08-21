@@ -2,8 +2,10 @@ const Route = require("express").Router()
 const Mangas = require('../scheme/manga')
 const Categories = require('../scheme/categories')
 
+let data = process.env.ON_SERVER=="true" ? {'helper': 'no-chapters'} : {}
+
 Route.get('/explore', async (req, res, next) => {
-    let mangas = await Mangas.find({}).sort({$natural: 1}).select("idv4 name artist type helper url_img").exec()
+    let mangas = await Mangas.find(data).sort({$natural: 1}).select("idv4 name artist type helper url_img").exec()
     res.render("pages/Explore/index", { 
         title: "Inicio",
         mangas: mangas,
@@ -32,7 +34,7 @@ Route.get('/genres', async (req, res, next) => {
 
 Route.get('/genres/:name', async (req, res, next) => {
     let genre = await Categories.findOne({'name': req.params.name}).exec()
-    let mangas = await Mangas.find({'categorie': {$in: [req.params.name]} }).sort({$natural: 1}).select("idv4 name artist type helper url_img").exec()
+    let mangas = await Mangas.find({'categorie': {$in: [req.params.name]}}).sort({$natural: 1}).select("idv4 name artist type helper url_img").exec()
     
     res.render("pages/Genres/Search", { 
         title: "Inicio",
