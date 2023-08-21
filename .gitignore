@@ -1,1 +1,11 @@
-*.css
+# dependencies
+/node_modules
+
+# Enviroment Variables
+/.env
+
+# Session Databases
+*.db
+
+# styles
+/public/css
