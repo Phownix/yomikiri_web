@@ -1,0 +1,39 @@
+{% extends "./../layouts/Account.html" %}
+
+{% block Head %}
+<link rel="stylesheet" href="/css/Dash.css">
+{% endblock %}
+
+{% block Page %}
+<main>
+    <section class="add categorie">
+        <div class="bread">
+            <h2>Agregar Manga</h2>
+            <a href="/dash">Volver</a>
+        </div>
+        
+        <form action="/dash/manga/add_categorie" method="post">
+            <input type="hidden" name="idv4">
+            <label for='name'>Nombre</label>
+            <input type="text" id='name' name="name">
+
+            <div class="box">
+                <label for="visible">Visible <span title="Marca si quires que esta categoria sea visible para los usuarios"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg></span></label>
+                <label for="nsfw">Contenido NSFW <span title="Deberas activar este si el contenido es para mayores de 18"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg></span></label>
+
+                <input type="checkbox" name="visible" id="visible" checked>
+                <span class="visible btn">
+                    <label for="visible">Visible</label>
+                </span>
+
+                <input type="checkbox" name="nsfw" id="nsfw">
+                <span class="nsfw btn">
+                    <label for="nsfw">NSFW</label>
+                </span>
+            </div>
+
+            <button type="submit">Guardar</button>
+        </form>
+    </section>
+</main>
+{% endblock %}

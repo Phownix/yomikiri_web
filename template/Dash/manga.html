@@ -1,0 +1,17 @@
+{% extends "./../layouts/Account.html" %}
+
+{% block Head %}
+<link rel="stylesheet" href="/css/Dash.css">
+{% endblock %}
+
+{% block Page %}
+<main>
+    <section class="bread">
+        <h2>DASHBOARD</h2>
+        <a href="/dash">Volver</a>
+    </section>
+    <section>
+        {{manga}}
+    </section>
+</main>
+{% endblock %}

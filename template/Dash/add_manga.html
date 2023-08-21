@@ -1,0 +1,96 @@
+{% extends "./../layouts/Account.html" %}
+
+{% block Head %}
+<link rel="stylesheet" href="/css/Dash.css">
+{% endblock %}
+
+{% block Page %}
+<main>
+    <section class="add manga">
+        <div class="bread">
+            <h2>Agregar Manga</h2>
+            <a href="/dash">Volver</a>
+        </div>
+
+        <form action="/dash/manga/add_manga" method="post">
+            <input type="hidden" name="idv4">
+            <input type="hidden" name="user_id" value="{{user.idv4 if user.idv4 else '--non--'}}">
+
+            <div class="tab firts">
+                <h2 class="tab_name">Informacion Basica</h2>
+
+                <div class='content file'>
+                    <label for="url_img">Portada</label>
+                    
+                    <div class='poster_upl'>
+                        <img src="" id='image_show'>
+                        <input type="text" id='url_img' name="url_img">
+                    </div>
+                </div>
+
+                <div class='content det'>
+                    <label for='name'>Nombre</label>
+                    <input type="text" id='name' name="name">
+                    
+                    <label for='artist'>Artista</label>
+                    <input type="text" id='artist' name="artist">
+
+                    <label for='type'>Tipo</label>
+                    <select name="type" id="type">
+                        <option value="doujinshi">Doujinshi</option>
+                        <option value="one_shot">One Shot</option>
+                        <option value="novela">Novela</option>
+                    </select>
+                    
+                    <label>NSFW <span title="Deberas activar este si el contenido es para mayores de 18"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg></span></label>
+                    <input type="checkbox" name="nsfw" id="nsfw">
+                    <span class="nsfw btn">
+                        <label for="nsfw">NSFW</label>
+                    </span>
+                </div>
+            </div>
+
+            <div class="tab second">
+                <div class="content full">
+                    <label for="desc">Descripción</label>
+                    <textarea name="description" id="desc" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+
+            <div class="tab tags">
+                <div class="content full">
+                    <label for='tag' title='Separa las Etiquetas con una coma(,)'>Etiquetas <span title="A diferencia de las categorias estas las puedes crear tu, Puede separar las etiquetas con una coma (,)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg></span></label>
+                    <input type="text" id='tag' name="tag" onkeydown='addTag(event, this)'>
+                    <div id='appendTag'></div>
+                </div>
+            </div>
+
+            <div class="tab third">
+                <h2 class="tab_name">Seleccionar Categorias</h2>
+                <div class='content list'>
+                    {% for x in genres %}
+                        <span class="categorie">
+                            <input type="checkbox" name="categorie" id="ct_{{ x.idv4 }}" value="{{ x.name }}">
+                            <label for="ct_{{ x.idv4 }}">
+                                {{ x.name }}
+                            </label>
+                        </span>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <br>
+            <div class='tab'>
+                <h2 class="tab_name">Agregar Paneles</h2>
+                
+            </div>
+
+            <div style="width: 100%;">
+                <div class="btn_group">
+                    <button type="submit" class='send'>Subir Manga</button>
+                </div>
+            </div>
+        </form>
+    </section>
+</main>
+{% endblock %}

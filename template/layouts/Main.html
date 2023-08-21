@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOMIKIRI - {{title}}</title>
+    <link rel="stylesheet" href="/css/Global.css">
+    {% block Head %}{% endblock %}
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+    {% include "./../Helpers/Navar.html" %}
+    <div class="app">
+        <aside class="hide" id="menu">
+            {% include "./../Helpers/Aside.html" %}
+        </aside>
+        {% block Page %}{% endblock %}
+        <div id="outbox_home"></div>
+    </div>
+    {% include "./../Helpers/Footer.html" %}
+
+    <script>
+        addEventListener('scroll', () => {
+            if(window.pageYOffset > 40){
+                document.getElementById('navar').classList.add('float')
+            }else{
+                document.getElementById('navar').classList.remove('float')
+            }
+        })
+    </script>
+</body>
+</html>

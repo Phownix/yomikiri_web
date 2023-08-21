@@ -1,0 +1,19 @@
+{% extends "./../../layouts/Main.html" %}
+
+{% block Head %}
+<link rel="stylesheet" href="/css/Search.css">
+{% endblock %}
+
+{% block Page %}
+<main>
+    <section class="genres">
+        <h2 class="section_title">Generos</h2>
+
+        <div class="_list">
+            {% for x in genres %}
+                <a href="/genres/{{x.name}}" class="__target">{{x.name}}</a>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "./../../layouts/Account.html" %}
+
+{% block Head %}
+<link rel="stylesheet" href="/css/Account.css">
+{% endblock %}
+
+{% block Page %}
+<main>
+    <section class="signup">
+        {{message}}
+        <form action="/signup" method="POST">
+            <input type="hidden" name="type" value="login">            
+            <h2>Registrarse</h2>
+
+            <label for="username">Nombre de usuario</label>
+            <input type="text" name="username" id="username">
+
+            <label for="password">Contrasena</label>
+            <input type="password" name="password" id="password">
+        
+            <button>Registrate</button>
+        
+            <p>
+                Si ya tienes una cuenta ingresa haciendo click en el siguiente enlace
+                <a href="/login">Iniciar Sesion</a>
+            </p>
+        </form>
+    </section>
+</main>
+{% endblock %}

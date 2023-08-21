@@ -1,0 +1,36 @@
+{% extends "./../../layouts/Main.html" %}
+
+{% block Head %}
+<link rel="stylesheet" href="/css/Home.css">
+{% endblock %}
+
+{% block Page %}
+<main>
+    <section>
+        <article class="explore">
+            <h2 class="article_name">Explorar</h2>
+            <div class="list">
+                {% for x in mangas %}
+                <a href="/manga/{{x.idv4}}" class="target">
+                    <div class="thumbnail">
+                        <img src="{{x.url_img}}" alt="">
+                    </div>                    
+                    <div class="data">
+                        <h3 class="name">{{x.name}}</h3>
+                        <div class="box">
+                            <span class="author">{{x.artist}}</span>
+                            <span class="dot">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
+                                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                                </svg>
+                            </span>
+                            <span class="type">{{x.type}}</span>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </article>
+    </section>
+</main>
+{% endblock %}

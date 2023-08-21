@@ -1,0 +1,36 @@
+<div class="widget menu">
+    <h2 class="wd_title">Principal</h2>
+    <ul class="wd_list">
+        <a class="wd_item {{'active' if page == 'home'}}" href="/">Inicio</a>
+        <a class="wd_item {{'active' if page == 'explore'}}" href="/explore">Explorar</a>
+        <a class="wd_item {{'active' if page == 'genres'}}" href="/genres">Generos</a>
+        {% if user %}
+            <a class="wd_item mb_item {{'active' if page == 'dash'}}" href="/account">Mi perfil</a>
+            <a class="wd_item mb_item {{'active' if page == 'dash'}}" href="/logout">Cerrar Sesion</a>
+            {% if user.admin %}
+                <a class="wd_item {{'active' if page == 'dash'}}" href="/dash">Dashboard</a>
+            {% endif %}
+        {% else %}
+            <a class="wd_item mb_item {{'active' if page == 'dash'}}" href="/login">Iniciar Sesion</a>
+        {% endif %}
+    </ul>
+</div>
+
+<div class="widget menu">
+    <h2 class="wd_title">Comunidad</h2>
+    <ul class="wd_list">
+        <a class="wd_item {{'active' if page == 'blog'}}" href="">Blog Oficial</a>
+        <a class="wd_item {{'active' if page == 'foro'}}" href="">Foro</a>
+    </ul>
+</div>
+
+<div class="widget menu">
+    <h2 class="wd_title">Ayuda</h2>
+    <ul class="wd_list">
+        <a class="wd_item {{'active' if page == 'dmca'}}" href="/dmca">Política de DMCA</a>
+        <a class="wd_item {{'active' if page == 'tac'}}" href="/terms-and-conditions">Términos y condiciones</a>
+        <a class="wd_item {{'active' if page == 'pop'}}" href="/privacy-policies">Políticas de privacidad</a>
+        <a class="wd_item {{'active' if page == 'cont'}}" href="/contact">Contacta con nosotros</a>
+        <a class="wd_item {{'active' if page == 'faq'}}" href="/faq">FAQ</a>
+    </ul>
+</div>

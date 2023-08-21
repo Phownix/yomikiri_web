@@ -1,0 +1,35 @@
+{
+  "name": "yomikiri_web",
+  "version": "1.0.0",
+  "description": "a website",
+  "main": "app.js",
+  "scripts": {
+    "dev": "npx nodemon --ext js,html,sass bin/www",
+    "start": "node bin/www",
+    "sass": "node-sass sass/ -o public/css/ --output-style compressed",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "website"
+  ],
+  "author": "phownix",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "jsonwebtoken": "^9.0.1",
+    "mongoose": "^7.4.3",
+    "node-sass": "^9.0.0",
+    "nodemon": "^3.0.1",
+    "nunjucks": "^3.2.4",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0",
+    "uuid": "^9.0.0"
+  }
+}

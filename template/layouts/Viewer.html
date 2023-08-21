@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leer "{{title}}" en Yomikiri</title>
+    <link rel="stylesheet" href="/css/Global.css">
+    {% block Head %}{% endblock %}
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+    {% include "./../Helpers/Navar_vw.html" %}
+    <aside class="hide hide_always" id="menu">
+        {% include "./../Helpers/Aside.html" %}
+    </aside>
+    {% block Page %}{% endblock %}
+    <div id="outbox_home"></div>
+
+    <script>
+        document.getElementById('navar').classList.add('float')
+        document.getElementById('navar').classList.add('viewer_page')
+    </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+{% extends "./../../layouts/Main.html" %}
+
+{% block Head %}
+<link rel="stylesheet" href="/css/Manga.css">
+{% endblock %}
+
+{% block Page %}
+<main>
+    <div class="summary">
+        <div class="poster">
+            <img loading="eager" id="img_{{ manga.idv4 }}" data-src="{{ manga.url_img }}" src="{{ manga.url_img }}" alt='{{ manga.name }} - MangaYOMU'>
+        </div>
+        <div class="data">
+            <div class="topbar">
+                <h2>{{manga.name}}</h2>
+                <div class='details'>
+                    <span class='visits'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                        </svg>
+                        {{ (manga.visits/1000)|round(1, "floor")+'k' if manga.visits > 1000 else manga.visits }}
+                    </span>
+                    <hr>
+                    <span class='type'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book-half" viewBox="0 0 16 16">
+                            <path d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+                        </svg>
+                        {{manga.type|upper}}
+                    </span>
+                    <hr>
+                    <span class='date'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-date" viewBox="0 0 16 16">
+                            <path d="M6.445 11.688V6.354h-.633A12.6 12.6 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61h.675zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82h-.684zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23z"/>
+                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                        </svg>
+                        {{createDoujin}}
+                    </span>
+                    <hr>
+                    <a class='report' id="report_btn" href="mailto:admin@manganoyomu.org">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-exclamation-octagon-fill" viewBox="0 0 16 16">
+                            <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                        </svg>
+                        Reportar
+                    </a>
+                </div>
+            </div>
+            <div class="description">
+                <p>
+                    {{ manga.description}}
+                </p>
+            </div>
+            <div class="categories">
+                <ul>
+                    {% for e in manga.categorie %}
+                    <li>
+                        <a class='tag_link' href='/genres/{{e}}'>{{ e }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class='panels'>
+            <div class='topbar'>
+                <h3>Paginas</h3>
+            </div>
+            {% if files %}
+                <div class='panel_list'>
+                    {% for x in files %}
+                        <a href="/manga/{{manga.idv4}}/view#page_{{loop.index}}">
+                            <img loading="lazy" src="{{x[1]}}//-/preview/384x576/-/format/webp/">
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div id="modal_section" class="hide_modal">
+        <div id='outbox'></div>
+
+        <div id='image'>
+            <img loading="lazy" id='_super' src="" alt="">
+        </div>
+    </div>
+</main>
+<script>
+    let image = document.getElementById('img_{{ manga.idv4 }}')
+    let model = document.getElementById('modal_section')
+    let hidden = ''
+
+    image.addEventListener('click', () => {
+        hidden = document.getElementById('image')
+        hidden.style.display = "flex"
+        document.getElementById('_super').src = image.src
+
+        model.classList.remove('hide_modal')
+        model.classList.add('show_modal')
+        document.body.classList.add('on_modal')
+
+        document.body.oncontextmenu = () => {return true}
+    })
+
+
+    document.getElementById('outbox').addEventListener('click', () => {
+        model.classList.remove('show_modal')
+        document.body.classList.remove('on_modal')
+        model.classList.add('hide_modal')
+        hidden.style.display = "none"
+        document.body.oncontextmenu = () => {return false}
+    })
+</script>
+{% endblock %}

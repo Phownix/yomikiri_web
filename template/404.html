@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error: {{err_title}}</title>
+    <link rel="stylesheet" href="/css/Global.css">
+    <link rel="stylesheet" href="/css/Error.css">
+</head>
+<body>
+    {% include "./Helpers/Navar.html" %}
+    <main class="error_app">
+        <h2>{{err_title}}</h2>
+        <p class="message">¡Oh no! Parece que hemos perdido este capítulo en el laberinto de historias. El manga que buscas está en una pausa emocionante. Pero no te preocupes, nuestros shinobis están trabajando para encontrarlo. Mientras tanto, explora otros títulos o regresa a la portada y prepárate para nuevas aventuras dibujadas.</p>
+        <p class="debug">Debug: {{err_flash}}</p>
+    </main>
+    {% include "./Helpers/Footer.html" %}
+</body>
+</html>

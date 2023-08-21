@@ -1,0 +1,62 @@
+<nav id="navar">
+    <div class="principal">
+        <div class="icon_page">
+            <span id="open_menu" class="menu_btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+            </span>
+            <h1 class="text __name">
+                <a href="/">
+                    YOMIKIRI
+                </a>
+                <span class="version">v1.0.0</span>
+            </h1>
+        </div>
+    </div>
+    <div class="account">
+        <div class="search_frm">
+            <form action="/search" class="search">
+                <label for="q" class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </label>
+                <input type="search" name="q" id="q" value="{{search_phrase if search_phrase}}" placeholder="Busca tu Yomikiri!">
+            </form>
+        </div>
+
+        {% if user %}
+            <div class="user">
+                <div class="__data">
+                    <div class="user_info">
+                        <h4>{{user.username}}</h4>
+                        <span class="status">{{user.last_login}}</span>
+                    </div>
+                    <img src="{{user.image}}" onerror="this.src = 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.7HUETz0J6eRt_7psW3_TFAAAAA%26pid%3DApi&f=1&ipt=59e7ed85ab2b60fcd0c416d7a8db5233ec53e603171feb28ec7a70d0a6da705c&ipo=images'" alt="">
+                </div>
+            </div>
+        {% else %}
+            <div class="login">
+                <a href="/login" class="btn">Ingresar</a>
+            </div>
+        {% endif %}
+    </div>
+</nav>
+
+
+<script>
+    document.getElementById('open_menu').addEventListener('click', () => {
+        document.getElementById('menu').classList.add('show');
+        document.getElementById('menu').classList.remove('hide');
+        document.getElementById('outbox_home').classList.add('_on');
+        document.body.classList.add('on_modal')
+
+        document.getElementById('outbox_home').onclick = () => {
+            document.getElementById('menu').classList.remove('show');
+            document.getElementById('menu').classList.add('hide');
+            document.getElementById('outbox_home').classList.remove('_on');
+            document.body.classList.remove('on_modal')
+        }
+    })
+</script>
