@@ -60,13 +60,13 @@ Route.post('/signup', async (req, res, next) => {
             password: hashedPassword,
             
             image: "https://manganoyomu.org/images/profile/01.jpg",
-            status: "login",
+            status: "Online",
  
             rol: ["Usuario"],
             addedManga: [],
             notifications: [{
                 title: "Bienvenido",
-                content: "Gracias por registrarte en MangaYOMU, desde ahora puedes guardar mangas en tu lista, calificarlos, crear grupos y si quieres puedes agregar mas contenido a la pagina como mangas, doujins, capitulos y mas.",
+                content: "Gracias por registrarte en Yomikiri, desde ahora puedes guardar mangas en tu lista, calificarlos y si quieres puedes agregar mas contenido a la pagina como one-shots, doujins, novelas y mas.",
                 date: new Date().toISOString()
             }],
 

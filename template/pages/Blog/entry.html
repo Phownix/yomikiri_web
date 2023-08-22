@@ -1,0 +1,32 @@
+{% extends "./../../layouts/Main.html" %}
+
+{% block Head %}
+<link rel="stylesheet" href="/css/Blog.css">
+{% endblock %}
+
+{% block Page %}
+<main>
+    <section class="post">
+        <h2 class="entry_title">{{post.name}}</h2>
+        <span class="entry_date">{{ date | string }}</span>
+        <div class="entry_body">
+            {% set formatted_entry = post.entry %}
+            {% set formatted_entry = formatted_entry.replace(r/\*(.*?)\*/g, '<b>$1</b>') %}
+            {% set formatted_entry = formatted_entry.replace(r/\_(.*?)\_/g, '<i>$1</i>') %}
+            {% set formatted_entry = formatted_entry.replace(r/\~(.*?)\~/g, '<s>$1</s>') %}
+            {% set formatted_entry = formatted_entry.replace(r/\$(.*?)\$/g, '<kbd>$1</kbd>') %}
+            {% set formatted_entry = formatted_entry.replace(r/\^\^([\s\S]*?)\^\^/g, '<blockquote>$1</blockquote>') %}
+            {{formatted_entry | nl2br | safe}}
+        </div>
+    </section>
+    <div class="foobar">
+        <a class="bar_item" href="javascript:void(0)">Compartir</a>
+        {% if user %}
+            {% if user.admin %}
+            <a class="bar_item" href="/dash/blog/edit/{{post.idv4}}">Editar Entrada</a>
+            <a class="bar_item" href="/dash/blog/edit/{{post.idv4}}">Eliminar Entrada</a>
+            {% endif %}
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

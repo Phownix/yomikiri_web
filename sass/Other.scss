@@ -1,0 +1,52 @@
+main{
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    width: 100%;
+}
+
+
+h2{
+    font-size: 2em;
+}
+
+h3{
+    font-size: 1.4em;
+    margin-top: 1.5rem;
+}
+
+p{
+    font-size: 1.1em;
+    letter-spacing: .5px;
+    word-spacing: 2px;
+    margin-top: .3rem;
+}
+
+ul{
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    margin-top: .5rem;
+    li{
+        list-style: none;
+        font-size: 1em;
+        letter-spacing: .5px;
+        word-spacing: 2px;
+
+        &::first-letter{
+            color: #2EBFA5;
+            margin-right: .4rem;
+        }
+    }
+}
+
+.logo{
+    font-weight: 400;
+    font-size: 1.4em;
+    font-family: 'Lilita One', cursive;
+    color: #2EBFA5;
+}
+
+.end{
+    margin-top: 2rem;
+}

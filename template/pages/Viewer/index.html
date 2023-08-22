@@ -13,9 +13,9 @@
             </div>
         </div>
 
-        {% for x in files %}
+        {% for x in manga.images %}
             <div class="panel" id="page_{{loop.index}}">
-                <img loading="lazy" src="{{x[1]}}">
+                <img loading="lazy" src="{{x.url}}">
                 <span class="page_num">Panel {{loop.index}}</span>
             </div>
         {% endfor %}

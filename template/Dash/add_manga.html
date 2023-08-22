@@ -12,8 +12,9 @@
             <a href="/dash">Volver</a>
         </div>
 
-        <form action="/dash/manga/add_manga" method="post">
+        <form ref='uploadForm' encType="multipart/form-data" action="/dash/manga/add_manga" method="post">
             <input type="hidden" name="idv4">
+            <input type="hidden" name="visible">
             <input type="hidden" name="user_id" value="{{user.idv4 if user.idv4 else '--non--'}}">
 
             <div class="tab firts">
@@ -24,7 +25,7 @@
                     
                     <div class='poster_upl'>
                         <img src="" id='image_show'>
-                        <input type="text" id='url_img' name="url_img">
+                        <input type="file" id='url_img' name="url_img">
                     </div>
                 </div>
 
@@ -37,8 +38,8 @@
 
                     <label for='type'>Tipo</label>
                     <select name="type" id="type">
-                        <option value="doujinshi">Doujinshi</option>
                         <option value="one_shot">One Shot</option>
+                        <option value="doujinshi">Doujinshi</option>z
                         <option value="novela">Novela</option>
                     </select>
                     
@@ -82,7 +83,14 @@
             <br>
             <div class='tab'>
                 <h2 class="tab_name">Agregar Paneles</h2>
-                
+                <div class='content full'>
+                    <div class="upload_files">
+                        <input type="file" id='images' name="images" multiple="multiple">
+                    </div>
+                    <div class='images_list' id='file_result'>
+                        <p class='messagge'>Aun no subes imagenes</p>
+                    </div>
+                </div>                
             </div>
 
             <div style="width: 100%;">
@@ -93,4 +101,17 @@
         </form>
     </section>
 </main>
+
+<script>
+    let file_input = document.getElementById('url_img');
+    let show_input = document.getElementById('image_show');
+
+    file_input.addEventListener('change', (e) => {
+        const reader  = new FileReader();
+        reader.onload = function(r)  {
+            show_input.src = r.target.result;
+        }
+        reader.readAsDataURL(file_input.files[0]);
+    })
+</script>
 {% endblock %}

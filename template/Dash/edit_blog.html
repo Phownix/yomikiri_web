@@ -1,0 +1,33 @@
+{% extends "./../layouts/Account.html" %}
+
+{% block Head %}
+<link rel="stylesheet" href="/css/Dash.css">
+{% endblock %}
+
+{% block Page %}
+<main>
+    <section class="add blog_post">
+        <div class="bread">
+            <h2>Editar Entrada</h2>
+            <a href="/dash">Volver</a>
+        </div>
+        
+        <form action="/dash/blog/edit" method="post">
+            <input type="hidden" name="idv4" value="{{edit.idv4 if edit.idv4}}">
+            <div class="box">
+                <label for='name'>Nombre</label>
+                <label for='date'>Publicacion</label>
+                <input type="text" id='name' name="name" value="{{edit.name if edit.name}}">
+                <input type="text" id='date' value="{{edit.date if edit.date}}" name="date" readonly>
+            </div>
+
+            <label for='entry'>Entrada</label>
+            <textarea name="entry" id="entry" cols="30" rows="10">{{edit.entry if edit.entry}}</textarea>
+
+            
+
+            <button type="submit">Guardar</button>
+        </form>
+    </section>
+</main>
+{% endblock %}

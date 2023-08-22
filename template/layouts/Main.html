@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YOMIKIRI - {{title}}</title>
     <link rel="stylesheet" href="/css/Global.css">
+    <link rel="stylesheet" href="/fonts/font.css">
     {% block Head %}{% endblock %}
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -22,7 +23,7 @@
 
     <script>
         addEventListener('scroll', () => {
-            if(window.pageYOffset > 40){
+            if(window.pageYOffset > 30){
                 document.getElementById('navar').classList.add('float')
             }else{
                 document.getElementById('navar').classList.remove('float')

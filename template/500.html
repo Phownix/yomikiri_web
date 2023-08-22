@@ -5,18 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error: {{err_title}}</title>
     <link rel="stylesheet" href="/css/Global.css">
+    <link rel="stylesheet" href="/fonts/font.css">
     <link rel="stylesheet" href="/css/Error.css">
 </head>
 <body>
     {% include "./Helpers/Navar.html" %}
-    <main class="error_app">
-        <h2>{{err_title}} | {{err.type if err.type}}</h2>
-        <p class="message">{{err.message}}</p>
+    <main>
+        <div class="error_app">
+            <h2>{{err_title}}{{" | "+err.type if err.type}}</h2>
+            <p class="message">{{err.message}}</p>
 
-        <p class="debug">Debug: {{err_flash}}</p>
-        {% if err.url %}
-        <a href="{{err.url}}">Volver</a>
-        {% endif %}
+            <p class="debug">Debug: {{err_flash}}</p>
+            {% if err.url %}
+            <a href="{{err.url}}">Volver</a>
+            {% else %}
+            <a href="/">Volver al Inicio</a>
+            {% endif %}
+        </div>
     </main>
     {% include "./Helpers/Footer.html" %}
 </body>

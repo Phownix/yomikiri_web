@@ -1,0 +1,32 @@
+{% extends "./../../layouts/Main.html" %}
+
+{% block Head %}
+<link rel="stylesheet" href="/css/Blog.css">
+{% endblock %}
+
+{% block Page %}
+<main>
+    <section>
+        <article class="blog_entries">
+            <h2 class="section_name">Entradas</h2>
+            <div class="_posts">
+                {% for x in entries %}
+                <a href="/blog/{{x.idv4}}" class="entry">
+                    <h1 class="name">{{x.name}}</h1>
+                    <span class="date">{{x.format}}</span>
+                    <div class="body">
+                        {% set formatted_entry = x.entry %}
+                        {% set formatted_entry = formatted_entry.replace(r/\*(.*?)\*/g, '<b>$1</b>') %}
+                        {% set formatted_entry = formatted_entry.replace(r/\_(.*?)\_/g, '<i>$1</i>') %}
+                        {% set formatted_entry = formatted_entry.replace(r/\~(.*?)\~/g, '<s>$1</s>') %}
+                        {% set formatted_entry = formatted_entry.replace(r/\$(.*?)\$/g, '<kbd>$1</kbd>') %}
+                        {% set formatted_entry = formatted_entry.replace(r/\^\^([\s\S]*?)\^\^/g, '<div class="blockquote">$1</div>') %}
+                        {{formatted_entry | safe}}
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </article>
+    </section>
+</main>
+{% endblock %}

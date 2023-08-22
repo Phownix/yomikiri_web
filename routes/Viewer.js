@@ -4,24 +4,22 @@ const Mangas = require('../scheme/manga')
 Route.get('/:id/view', async (req, res, next) => {
     let manga = await Mangas.findOne({'idv4': req.params.id}).exec()
 
-    manga.images = JSON.parse(JSON.stringify(manga)).images;
+    manga.images = manga.images.sort(
+        (a, b) => {
+            if (a.name.toUpperCase() < b.name.toUpperCase()) {
+                return -1;
+            }
+            if (a.name.toUpperCase() > b.name.toUpperCase()) {
+                return 1;
+            }
 
-    if(manga.images){
-        manga.images = typeof(manga.images) == 'string' ? [manga.images] : manga.images;
-        manga.images.join();
-        manga.images.sort();
-    }else{
-        manga.images = [];
-    }
-
-    let images = manga.images.map((e) => {
-        return e.split(",");
-    })
+            return 0;
+        }
+    );
 
     res.render("pages/Viewer/index", { 
         title: manga.name,
         manga: manga,
-        files: images,
     })
 })
 

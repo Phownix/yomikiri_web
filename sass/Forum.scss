@@ -1,0 +1,25 @@
+.no_available{
+    background-color: #fafafa;
+    border-radius: .2rem;
+    border: 1px solid #ddddddd0;
+    padding: 1.5rem 2rem;
+    max-width: 30rem;
+    margin: 1rem auto;
+
+    h2{
+        font-size: 2em;
+    }
+
+    p{
+        letter-spacing: .5;
+        word-spacing: 2px;
+        margin-top: .4rem;
+    }
+
+    a{
+        display: inline-block;
+        text-decoration: none;
+        color: #6B7FD7;
+        margin-top: 1rem;
+    }
+}

@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const compression = require('compression')
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
+const fileUpload = require('express-fileupload');
 
 const passport = require('./scripts/passport');
 const mongoDB = require('./db.js')
@@ -27,6 +28,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(cookieParser());
+app.use(fileUpload());
 
 app.use(async (req, res, next) => {
     await mongoDB();
@@ -52,6 +54,8 @@ app.use('/', require('./routes/Home'));
 app.use('/', require('./routes/Search'));
 app.use('/', require('./routes/Other'));
 app.use('/', require('./routes/Login'));
+app.use('/blog', require('./routes/Blog'));
+app.use('/forum', require('./routes/Forum'));
 
 app.use('/dash', authenticateJWT, require('./routes/Dashboard'));
 

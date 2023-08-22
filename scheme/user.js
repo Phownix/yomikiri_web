@@ -12,7 +12,7 @@ const UserSchema = new Schema({
     created: { type: Date, required: true, default: Date.now },
     
     image: { type: String },
-    status: { type: String },
+    status: { type: String, default: "online" },
 
     rol: [],
     addedManga: [],
