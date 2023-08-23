@@ -20,6 +20,8 @@
             {% set formatted_entry = formatted_entry.replace(r/\*(.*?)\*/g, '<b>$1</b>') %}
             {% set formatted_entry = formatted_entry.replace(r/\_(.*?)\_/g, '<i>$1</i>') %}
             {% set formatted_entry = formatted_entry.replace(r/\~(.*?)\~/g, '<s>$1</s>') %}
+            {% set formatted_entry = formatted_entry.replace(r/\#(.*?)\#/g, '<h3>$1</h3>') %}
+            {% set formatted_entry = formatted_entry.replace(r/\``(.*?)\``/g, '<li>$1</li>') %}
             {% set formatted_entry = formatted_entry.replace(r/\$(.*?)\$/g, '<kbd>$1</kbd>') %}
             {% set formatted_entry = formatted_entry.replace(r/\^\^([\s\S]*?)\^\^/g, '<blockquote>$1</blockquote>') %}
             {{formatted_entry | nl2br | safe}}

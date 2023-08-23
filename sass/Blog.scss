@@ -152,6 +152,10 @@ section.post{
             font-style: italic;
         }
 
+        li{
+            list-style: decimal inside;
+        }
+
         kbd{
             background-color: #212121;
             font-family: 'Lato', sans-serif;
