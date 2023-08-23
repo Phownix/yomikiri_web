@@ -12,8 +12,12 @@
             <a href="/dash">Volver</a>
         </div>
         
-        <form action="/dash/blog/add" method="post">
+        <form ref='uploadForm' encType="multipart/form-data" action="/dash/blog/add" method="post">
             <input type="hidden" name="idv4">
+
+            <label for="poster">Portada</label>
+            <input type="file" id='poster' name="poster">
+
             <div class="box">
                 <label for='name'>Nombre</label>
                 <label for='date'>Publicacion</label>
@@ -28,6 +32,12 @@
 
             <button type="submit">Guardar</button>
         </form>
+    </section>
+
+    <section class="view">
+        <div class='img_poster'>
+            <img src="" id='_poster'>
+        </div>
     </section>
 </main>
 {% endblock %}

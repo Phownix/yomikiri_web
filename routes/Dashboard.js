@@ -7,6 +7,8 @@ const { v4: uuidv4 } = require('uuid');
 const { Queue, UploadClient, uploadFile } = require('@uploadcare/upload-client')
 const client = new UploadClient({ publicKey: process.env.SERVER })
 
+const sharp = require('sharp');
+
 let data = process.env.ON_SERVER=="true" ? {'helper': 'no-chapters'} : {}
 
 Route.get('/', async (req, res, next) => {
@@ -126,6 +128,21 @@ Route.post('/blog/add', async (req, res, next) => {
     try{
         req.body.idv4 = uuidv4();
 
+        if(req.files?.poster){
+            let image = req.files.poster;
+            let name = req.body.idv4+"_"+req.body.name.replaceAll(' ', '');
+            
+            sharp(image.data)
+                .toFile(__dirname + '/../public/thumb/blog/'+name+'.webp', (err, info) => { 
+                if (err) next(err);
+            });
+
+            req.body.poster = '/thumb/blog/'+name+'.webp'
+        }
+        else{
+            req.body.poster = null            
+        }
+
         const _blog = new Blog(req.body);
         await _blog.save();
 
@@ -134,8 +151,6 @@ Route.post('/blog/add', async (req, res, next) => {
         next(Error)
     }
 })
-
-
 
 Route.post('/blog/edit', async (req, res, next) => {
     try{

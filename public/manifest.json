@@ -1,0 +1,42 @@
+{
+    "name": "Yomikiri",
+    "short_name": "Yomikiri",
+    "description": "Explora un mundo de emocionantes mangas y yomikiris en línea. Sumérgete en historias cautivadoras y descubre obras de autores talentosos. ¡Bienvenido a la plataforma de lectura de mangas que te llevará a nuevas aventuras",
+    "start_url": "https://yomikiri.tk/",
+    "lang": "es",
+    "display": "standalone",
+    "theme_color": "#2ebfa5",
+    "background_color": "#fffcff",
+    "orientation": "portrait",
+    "dir": "ltr",
+    "icons": [
+        { 
+          "src": "/favicon.ico", 
+          "type": "image/x-icon", 
+          "sizes": "16x16 32x32" 
+        },
+        { 
+          "src": "/images/ICON/web/icon-192.png", 
+          "type": "image/png", 
+          "sizes": "192x192" 
+        },
+        { 
+          "src": "/images/ICON/web/icon-512.png", 
+          "type": "image/png", 
+          "sizes": "512x512" 
+        },
+
+        {
+          "src": "/images/ICON/web/icon-192-maskable.png",
+          "type": "image/png",
+          "sizes": "192x192",
+          "purpose": "maskable"
+        },
+        {
+          "src": "/images/ICON/web/icon-512-maskable.png",
+          "type": "image/png",
+          "sizes": "512x512",
+          "purpose": "maskable"
+        }
+    ]
+}

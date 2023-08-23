@@ -7,5 +7,7 @@
 # Session Databases
 *.db
 
+*.webp
+
 # styles
 /public/css

@@ -7,8 +7,14 @@
 {% block Page %}
 <main>
     <section class="post">
-        <h2 class="entry_title">{{post.name}}</h2>
-        <span class="entry_date">{{ date | string }}</span>
+        <div class="header">
+            <h2 class="entry_title">{{post.name}}</h2>
+            <span class="entry_date">{{ date | string }}</span>
+        </div>
+        
+        {% if post.poster %}
+        <img src="{{post.poster}}" alt="{{post.name}}">
+        {% endif %}
         <div class="entry_body">
             {% set formatted_entry = post.entry %}
             {% set formatted_entry = formatted_entry.replace(r/\*(.*?)\*/g, '<b>$1</b>') %}
@@ -28,5 +34,7 @@
             {% endif %}
         {% endif %}
     </div>
+    
+    {% include "./../../Helpers/Comments.html" %}
 </main>
 {% endblock %}

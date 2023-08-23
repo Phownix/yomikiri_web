@@ -1,0 +1,52 @@
+{% if user %}
+<section class="new_comment">
+    <form action="/comment" method="POST">
+        <input type="hidden" name="content" value="{{idv4}}">
+        <input type="hidden" name="author" value="{{user.idv4}}">
+        <input type="hidden" name="in" value="{{in}}">
+        <input type="hidden" name="idv4">
+        <label for="comm">
+            <h2>Agregar Comentario</h2>
+        </label>
+        <div class="area">
+            <div class="header">
+                <div class="principal">
+                    <span class="user item">
+                        #{{user.username}}
+                    </span>
+                    <span class="write item">
+                        Write
+                    </span>
+                </div>
+            </div>
+            <textarea name="comm" id="comm"></textarea>
+        </div>
+        <button type="submit">Comentar</button>
+    </form>
+</section>
+{% endif %}
+
+<section class="separator"></section>
+
+<section class="list_comments">
+    {% for x in comments %}
+    <article id="{{x.idv4}}">
+        <div class="user">
+            <img src="{{x.User[0].image}}">
+            <div class="data">
+                <h3>{{x.User[0].username}}</h3>
+                <span class="date">{{x.date}}</span>
+            </div>
+        </div>
+        <div class="comment">
+            {% set formatted_comm = x.comm %}
+            {% set formatted_comm = formatted_comm.replace(r/\*(.*?)\*/g, '<b>$1</b>') %}
+            {% set formatted_comm = formatted_comm.replace(r/\_(.*?)\_/g, '<i>$1</i>') %}
+            {% set formatted_comm = formatted_comm.replace(r/\~(.*?)\~/g, '<s>$1</s>') %}
+            {% set formatted_comm = formatted_comm.replace(r/\$(.*?)\$/g, '<kbd>$1</kbd>') %}
+            {% set formatted_comm = formatted_comm.replace(r/\^\^([\s\S]*?)\^\^/g, '<blockquote>$1</blockquote>') %}
+            {{formatted_comm | nl2br | safe}}
+        </div>
+    </article>
+    {% endfor %}
+</section>

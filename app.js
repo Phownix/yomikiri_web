@@ -61,6 +61,8 @@ app.use('/dash', authenticateJWT, require('./routes/Dashboard'));
 
 app.use('/account', authenticateJWT, require('./routes/Account'));
 
+app.use('/comment', require('./routes/Comments'));
+
 app.use('/manga', require('./routes/Manga'));
 app.use('/manga', require('./routes/Viewer'));
 

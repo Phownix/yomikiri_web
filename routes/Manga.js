@@ -1,9 +1,15 @@
 const Route = require("express").Router()
 const Mangas = require('../scheme/manga')
+const Comments = require('../scheme/comment');
 
 Route.get('/:id', async (req, res, next) => {
-    let created;
     let manga = await Mangas.findOneAndUpdate({'idv4': req.params.id}, { $inc: { visits: 3 } }, {upsert: true}).exec()
+
+    let comments = await Comments.aggregate([
+        { $match: {in: "manga", content: manga.idv4} },
+        { $lookup: {from: 'users', localField:'author', foreignField:'idv4', as:'User'}},
+        { $sort: {date: -1} },
+    ]).exec()
 
     manga.images = manga.images.sort(
         (a, b) => {
@@ -21,7 +27,10 @@ Route.get('/:id', async (req, res, next) => {
     res.render("pages/Manga/index", { 
         title: manga.name,
         manga: manga,
-        created: new Date(manga.created).getFullYear()
+        created: new Date(manga.created).getFullYear(),
+        idv4: manga.idv4,
+        in: "manga",
+        comments: comments
     })
 })
 
