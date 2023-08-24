@@ -91,8 +91,28 @@ main{
     }
 }
 
+section.delete{
+    max-width: 25rem !important;
+    margin: 0 auto;
+    padding: 0 1rem;
+    min-height: 60vh;
 
-section.add{
+    form{
+        gap: 0 !important;
+    }
+    label{
+        margin-bottom: 0 !important;
+    }
+
+    span {
+        display: block;
+        font-size: .8em;
+        opacity: .6;
+        margin-bottom: 1rem;
+    }
+}
+
+section.add, section.delete{
     max-width: 40rem;
     margin: 0 auto;
     padding: 0 1rem;
@@ -138,6 +158,10 @@ section.add{
             &:hover{
                 background-color: #6B7FD7;
                 cursor: pointer;
+            }
+
+            &:disabled{
+                background-color: #6B7FD7a0;
             }
         }
 

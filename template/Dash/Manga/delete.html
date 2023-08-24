@@ -1,0 +1,52 @@
+{% extends "./../../layouts/Account.html" %}
+
+{% block Head %}
+<link rel="stylesheet" href="/css/Dash.css">
+{% endblock %}
+
+{% block Page %}
+<main>
+    <section class="delete manga">
+        <div class="bread">
+            <h2>Eliminar Manga</h2>
+            <a href="/dash">Volver</a>
+        </div>
+
+        <form id="delete_form" action="/dash/manga/delete" method="post">
+            <input type="hidden" name="idv4" value="{{manga.idv4}}">
+            <label for='input_confirm'>Confirmar Eliminacion</label>
+            <span>Estas por eliminar el manga llamado "{{manga.name}}", Ingresa el nombre del manga para confirmar la eliminiacion</span>
+            <input type="text" id='input_confirm' name="name">
+
+            <button type="submit">Confirmar</button>
+        </form>
+    </section>
+</main>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const form = document.getElementById("delete_form");
+        const confirm = document.getElementById("input_confirm");
+        const button = document.querySelector('button')
+        let eventcheck = false
+        button.disabled = true;
+
+        confirm.addEventListener("keyup", function(e) {
+            const inputValue = e.target.value.trim().toLowerCase();
+        
+            if (inputValue !== "{{manga.name | lower}}") {
+                button.disabled = true;
+            }else{
+                eventcheck = true;
+                button.disabled = false;
+            }
+        });
+
+        form.addEventListener("submit", function(event) {
+            if(!eventcheck){
+                event.preventDefault();
+            }
+        })
+    });
+</script>
+{% endblock %}

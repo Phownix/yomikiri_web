@@ -11,6 +11,12 @@
 
 {% block Page %}
 <main>
+    {% if user.admin %}
+    <div class="manga admin foobar">
+        <a class="bar_item" href="/dash/manga/{{manga.idv4}}/edit">Editar Manga</a>
+        <a class="bar_item" href="/dash/manga/{{manga.idv4}}/delete">Eliminar Manga</a>
+    </div>
+    {% endif %}
     <div class="summary">
         <div class="poster">
             <img loading="eager" id="img_{{ manga.idv4 }}" data-src="{{ manga.url_img }}" src="{{ manga.url_img }}" alt='{{ manga.name }} - MangaYOMU'>

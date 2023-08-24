@@ -77,7 +77,6 @@ Route.post('/signup', async (req, res, next) => {
 
         res.redirect('/login')
     } catch (error) {
-        console.log(error)
         next(error)
     }
 });
