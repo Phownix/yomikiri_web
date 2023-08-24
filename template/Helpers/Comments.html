@@ -32,7 +32,7 @@
     {% for x in comments %}
     <article id="{{x.idv4}}">
         <div class="user">
-            <img src="{{x.User[0].image}}">
+            <img src="{{x.User[0].image}}" onerror="this.src = '/images/simple.jpg'">
             <div class="data">
                 <h3>{{x.User[0].username}}</h3>
                 <span class="date">{{x.date}}</span>
