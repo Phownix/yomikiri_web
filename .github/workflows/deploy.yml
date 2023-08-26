@@ -1,0 +1,35 @@
+# .github/workflows/deploy.yml
+name: Auto Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install SSH client
+        run: sudo apt-get update && sudo apt-get install -y openssh-client
+
+      - name: Configure SSH agent
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.MYOMU }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H 66.175.233.55 >> ~/.ssh/known_hosts
+          ssh -o StrictHostKeyChecking=no root@66.175.233.55 "echo 'SSH agent configured'"
+
+      - name: Execute commands on server
+        env:
+          SERVER_USERNAME: root
+          SERVER_IP: 66.175.233.55
+        run: |
+          ssh $SERVER_USERNAME@$SERVER_IP "cd /root/yomikiri_web && git pull && npm i && npm run sass && pm2 restart all --update-env"
