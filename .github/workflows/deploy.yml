@@ -19,7 +19,7 @@ jobs:
 
       - name: Configure SSH agent
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.MYOMU }}
+          SSH_PRIVATE_KEY: ${{ secrets.LKey }}
         run: |
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
